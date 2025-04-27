@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Music Catalogue</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+
+  <body>
+    <h1>Music Catalogue</h1>
+    <form id="add_music">
+      <h2>Add New Music</h2>
+      <input type="text" id="title" placeholder="Title"/>
+      <input type="text" id="artist" placeholder="Artist"/>
+      <input type="text" id="album" placeholder="Album" />
+      <input type="number" id="release_year" placeholder="Release Year"/>
+      <input type="text" id="genre" placeholder="Genre"/>
+      <button type="submit" id="add_button" class="action-button">
+        Add Music
+      </button>
+      <button type="submit" id="update_button" class="hidden">
+        Update Music
+      </button>
+    </form>
+
+    <table id="music_table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Album</th>
+          <th>Release Year</th>
+          <th>Genre</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script src="script.js"></script>
+  </body>
+</html>
