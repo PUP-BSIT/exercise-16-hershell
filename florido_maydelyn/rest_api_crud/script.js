@@ -1,16 +1,16 @@
-document.getElementById('studentForm').addEventListener('submit', function(event) {
+document.getElementById('studentForm')
+  .addEventListener('submit', function(event) {
   event.preventDefault();
 
   const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;  // Change to email
+  const email = document.getElementById('email').value;
   const course = document.getElementById('course').value;
   const year_level = document.getElementById('year_level').value;
   const birthday = document.getElementById('birthday').value;
 
-  // Check if the update button is visible to determine if we are updating
   if (!document.getElementById('updateButton').classList.contains('hidden')) {
-      const id = document.getElementById('studentForm').dataset.id; // Get the ID from the dataset
-      const updatedStudent = { id, name, email, course, year_level, birthday };  // Change student_id to email
+      const id = document.getElementById('studentForm').dataset.id;
+      const updatedStudent = { id, name, email, course, year_level, birthday };
 
       fetch('https://restapi.hershive.com/florido/florido_end_file.php', {
           method: 'PATCH',
@@ -20,21 +20,20 @@ document.getElementById('studentForm').addEventListener('submit', function(event
       .then(response => response.json())
       .then(data => {
           alert(data.message);
-          loadStudents(); // Reload the students list after updating
-          clearForm(); // Clear the form after submission
+          loadStudents();
+          clearForm();
       });
   } else {
-      // Adding a new student
       fetch('https://restapi.hershive.com/florido/florido_end_file.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, course, year_level, birthday })  // Change student_id to email
+          body: JSON.stringify({ name, email, course, year_level, birthday })
       })
       .then(response => response.json())
       .then(data => {
           alert(data.message);
-          loadStudents(); // Reload the students list after adding
-          clearForm(); // Clear the form after submission
+          loadStudents();
+          clearForm();
       });
   }
 });
@@ -43,14 +42,15 @@ function loadStudents() {
   fetch('https://restapi.hershive.com/florido/florido_end_file.php')
   .then(response => response.json())
   .then(data => {
-      const tbody = document.getElementById('studentTable').querySelector('tbody');
-      tbody.innerHTML = ''; // Clear existing rows
+      const tbody = document.getElementById('studentTable')
+          .querySelector('tbody');
+      tbody.innerHTML = '';
       data.forEach((student, index) => {
           const row = document.createElement('tr');
           row.innerHTML = `
-              <td>${index + 1}</td> <!-- Display the index + 1 for numbering -->
+              <td>${index + 1}</td>
               <td>${student.name}</td>
-              <td>${student.email}</td>  <!-- Change student_id to email -->
+              <td>${student.email}</td>
               <td>${student.course}</td>
               <td>${student.year_level}</td>
               <td>${student.birthday}</td>
@@ -68,20 +68,18 @@ function loadStudents() {
 }
 
 function editStudent(id) {
-  // Fetch the student's current details
   fetch(`https://restapi.hershive.com/florido/florido_end_file.php?id=${id}`)
   .then(response => response.json())
   .then(student => {
-      // Populate the form with the student's current details
       document.getElementById('name').value = student.name || '';
-      document.getElementById('email').value = student.email || '';  // Change student_id to email
+      document.getElementById('email').value = student.email || '';
       document.getElementById('course').value = student.course || '';
       document.getElementById('year_level').value = student.year_level;
       document.getElementById('birthday').value = student.birthday || '';
 
-      document.getElementById('studentForm').dataset.id = id; // Store the ID for updating
-      document.getElementById('updateButton').classList.remove('hidden'); // Show update button
-      document.getElementById('addButton').classList.add('hidden'); // Hide add button
+      document.getElementById('studentForm').dataset.id = id;
+      document.getElementById('updateButton').classList.remove('hidden');
+      document.getElementById('addButton').classList.add('hidden');
   });
 }
 
@@ -94,7 +92,7 @@ function deleteStudent(id) {
   .then(response => response.json())
   .then(data => {
       alert(data.message);
-      loadStudents(); // Reload the students list after deleting
+      loadStudents();
   })
   .catch(error => {
       console.error('Error deleting student:', error);
@@ -102,10 +100,10 @@ function deleteStudent(id) {
 }
 
 function clearForm() {
-  document.getElementById('studentForm').reset(); // Clear the form fields
-  delete document.getElementById('studentForm').dataset.id; // Clear the ID after form reset
-  document.getElementById('updateButton').classList.add('hidden'); // Hide update button
-  document.getElementById('addButton').classList.remove('hidden'); // Show add button
+  document.getElementById('studentForm').reset();
+  delete document.getElementById('studentForm').dataset.id;
+  document.getElementById('updateButton').classList.add('hidden');
+  document.getElementById('addButton').classList.remove('hidden');
 }
 
 loadStudents();
