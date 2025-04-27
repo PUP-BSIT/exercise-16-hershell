@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>KPOP Idols API</title>
+</head>
+
+<body>
+  <h1>KPOP Idols</h1>
+
+  <form id="idol_form">
+    <label id="label_button" class="hidden">Update the following: </label>
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="text" id="group_name" placeholder="Group Name" required>
+    <input type="number" id="age" placeholder="Age" required>
+    <input type="number" id="debut_year" placeholder="Debut Year" required>
+    <button
+        type="submit"
+        id="add_button"
+        class="action-button">Add Idol
+    </button>
+    <button type="submit" id="update_button" class="hidden">Update Idol</button>
+  </form>
+  
+  <table id="idol_table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Group</th>
+        <th>Age</th>
+        <th>Debut Year</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+      <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
