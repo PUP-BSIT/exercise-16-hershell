@@ -5,12 +5,12 @@ document.getElementById('student_form')
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const course = document.getElementById('course').value;
-  const yearLevel = document.getElementById('year_level').value;
+  const year_level = document.getElementById('year_level').value;
   const birthday = document.getElementById('birthday').value;
 
   if (!document.getElementById('update_button').classList.contains('hidden')) {
     const id = document.getElementById('student_form').dataset.id;
-    const updatedStudent = { id, name, email, course, yearLevel, birthday };
+    const updatedStudent = { id, name, email, course, year_level, birthday };
 
     fetch('https://restapi.hershive.com/florido/florido_end_file.php', {
       method: 'PATCH',
@@ -27,7 +27,7 @@ document.getElementById('student_form')
     fetch('https://restapi.hershive.com/florido/florido_end_file.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, course, yearLevel, birthday })
+      body: JSON.stringify({ name, email, course, year_level, birthday })
     })
     .then(response => response.json())
     .then(data => {
