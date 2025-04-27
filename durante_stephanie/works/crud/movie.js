@@ -2,7 +2,7 @@ const movieTable = document.querySelector("#crud_form");
 const endpoint = 'https://restapi.hershive.com/durante/durante_end_file.php';
 
 document.querySelector("#crud_form")
-.addEventListener("submit", function (event) {
+    .addEventListener("submit", function (event) {
   event.preventDefault();
   submitForm();
 });
@@ -16,8 +16,7 @@ function getMovieDetails() {
   fetch(endpoint, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"},
   })
     .then((response) => {
       if (!response.ok) {
@@ -27,7 +26,7 @@ function getMovieDetails() {
     })
     .then((data) => {
       const tableBody = document.getElementById("table_body");
-      tableBody.innerHTML = ""; // Clear previous rows
+      tableBody.innerHTML = "";
 
       data.forEach((movie) => {
         const row = document.createElement("tr");
@@ -70,8 +69,7 @@ function submitForm() {
   fetch(endpoint, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"},
     body: JSON.stringify({
       title: movieTitle,
       director: directorName,
@@ -94,8 +92,7 @@ function deleteMovie(id) {
   fetch(endpoint, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"},
     body: JSON.stringify({ id: id }),
   })
     .then((response) => response.json())
@@ -134,8 +131,7 @@ function submitUpdate() {
   fetch(endpoint, {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"},
     body: JSON.stringify({
       id: movieId,
       title: movieTitle,
