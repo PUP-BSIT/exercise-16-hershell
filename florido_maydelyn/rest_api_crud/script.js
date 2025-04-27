@@ -1,16 +1,16 @@
-document.getElementById('studentForm')
+document.getElementById('student_form')
   .addEventListener('submit', function(event) {
   event.preventDefault();
 
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const course = document.getElementById('course').value;
-  const year_level = document.getElementById('year_level').value;
+  const yearLevel = document.getElementById('year_level').value;
   const birthday = document.getElementById('birthday').value;
 
-  if (!document.getElementById('updateButton').classList.contains('hidden')) {
-    const id = document.getElementById('studentForm').dataset.id;
-    const updatedStudent = { id, name, email, course, year_level, birthday };
+  if (!document.getElementById('update_button').classList.contains('hidden')) {
+    const id = document.getElementById('student_form').dataset.id;
+    const updatedStudent = { id, name, email, course, yearLevel, birthday };
 
     fetch('https://restapi.hershive.com/florido/florido_end_file.php', {
       method: 'PATCH',
@@ -27,7 +27,7 @@ document.getElementById('studentForm')
     fetch('https://restapi.hershive.com/florido/florido_end_file.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, course, year_level, birthday })
+      body: JSON.stringify({ name, email, course, yearLevel, birthday })
     })
     .then(response => response.json())
     .then(data => {
@@ -77,9 +77,9 @@ function editStudent(id) {
     document.getElementById('year_level').value = student.year_level;
     document.getElementById('birthday').value = student.birthday || '';
 
-    document.getElementById('studentForm').dataset.id = id;
-    document.getElementById('updateButton').classList.remove('hidden');
-    document.getElementById('addButton').classList.add('hidden');
+    document.getElementById('student_form').dataset.id = id;
+    document.getElementById('update_button').classList.remove('hidden');
+    document.getElementById('add_button').classList.add('hidden');
   });
 }
 
@@ -100,10 +100,10 @@ function deleteStudent(id) {
 }
 
 function clearForm() {
-  document.getElementById('studentForm').reset();
-  delete document.getElementById('studentForm').dataset.id;
-  document.getElementById('updateButton').classList.add('hidden');
-  document.getElementById('addButton').classList.remove('hidden');
+  document.getElementById('student_form').reset();
+  delete document.getElementById('student_form').dataset.id;
+  document.getElementById('update_button').classList.add('hidden');
+  document.getElementById('add_button').classList.remove('hidden');
 }
 
 loadStudents();
