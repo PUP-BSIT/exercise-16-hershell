@@ -42,7 +42,7 @@ function loadStudents() {
   fetch('https://restapi.hershive.com/florido/florido_end_file.php')
   .then(response => response.json())
   .then(data => {
-    const tbody = document.getElementById('studentTable')
+    const tbody = document.getElementById('student_table')
         .querySelector('tbody');
     tbody.innerHTML = '';
     data.forEach((student, index) => {
